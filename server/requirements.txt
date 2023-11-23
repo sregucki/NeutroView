@@ -1,0 +1,11 @@
+gdeltdoc
+black
+pandas
+newspaper3k
+nltk
+scikit-learn
+numpy
+joblib
+textblob
+fastapi
+uvicorn
