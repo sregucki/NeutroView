@@ -1,7 +1,7 @@
 export class ArticleQuery {
   keyword?: string;
   category?: string;
-  time?: string;
+  timespan?: string;
   numRecords?: number;
   domain?: string;
   startDate?: Date;
@@ -11,7 +11,7 @@ export class ArticleQuery {
   constructor(
     keyword?: string,
     category?: string,
-    time?: string,
+    timespan?: string,
     numRecords?: number,
     domain?: string,
     startDate?: Date,
@@ -20,7 +20,7 @@ export class ArticleQuery {
   ) {
     this.keyword = keyword;
     this.category = category;
-    this.time = time;
+    this.timespan = timespan;
     this.numRecords = numRecords;
     this.domain = domain;
     this.startDate = startDate;
