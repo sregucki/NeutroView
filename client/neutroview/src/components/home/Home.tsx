@@ -2,8 +2,32 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Navbar from "../navbar/Navbar";
 import "./home.scss";
 import { faLocationDot } from "@fortawesome/free-solid-svg-icons";
+import { useEffect, useState } from "react";
+import { IArticle } from "../../types/api";
+import moment from "moment";
 
 function Home() {
+  const [topStoriesArticles, setTopStoriesArticles] = useState<IArticle[]>([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const response = await fetch(
+        "http://localhost:8000/articles/?keyword=biden&country=US"
+      );
+      const data = await response.json();
+      const mappedData = data.map((articles: any) => ({
+        url: articles.url,
+        title: articles.title,
+        domain: articles.domain,
+        seenDate: moment
+          .utc(articles.seen_date, "YYYYMMDDTHHmmssZ", true)
+          .format("DD MMM"),
+        imgUrl: articles.img_url,
+      }));
+      setTopStoriesArticles(mappedData);
+    };
+    fetchData();
+  }, []);
   return (
     <div>
       <Navbar />
@@ -21,6 +45,16 @@ function Home() {
             <div id="timeline-explore">
               <button>Explore Timeline</button>
             </div>
+          </div>
+          <h2 id="top-news-stories-h2">Top News Stories</h2>
+          <div id="news-stories-container">
+            {topStoriesArticles.map((article) => (
+              <div className="story-container-short">
+                <h4>{article.title}</h4>
+                <span>{article.domain}</span>
+                <span>{`, ${article.seenDate}`}</span>
+              </div>
+            ))}
           </div>
         </div>
         <div className="container" id="headlines"></div>
