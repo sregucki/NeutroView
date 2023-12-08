@@ -5,6 +5,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from api import articles
 
 app = FastAPI()
+app.add_middleware(CORSMiddleware, allow_origins=["*"])
 app.include_router(articles.router, prefix="/articles", tags=["articles"])
 
 if __name__ == "__main__":
