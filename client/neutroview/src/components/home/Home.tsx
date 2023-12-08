@@ -9,11 +9,21 @@ function Home() {
       <Navbar />
       <div className="main-container">
         <div className="container" id="top-news-stories">
-          1
+          <div id="timeline-container">
+            <div id="timeline-img"></div>
+            <h2>Israel Palestine War</h2>
+            <div id="timeline-desc">
+              <span>
+                A timeline of news events of the most recent escalation in
+                violence of the Israeli-Palestinian conflict.
+              </span>
+            </div>
+            <div id="timeline-explore">
+              <button>Explore Timeline</button>
+            </div>
+          </div>
         </div>
-        <div className="container" id="headlines">
-          2
-        </div>
+        <div className="container" id="headlines"></div>
         <div className="container" id="local-news">
           <h2>Daily Local News</h2>
           <div className="container-title">
