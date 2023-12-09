@@ -50,9 +50,10 @@ function Home() {
           <div id="news-stories-container">
             {topStoriesArticles.map((article) => (
               <div className="story-container-short">
-                <h4>{article.title}</h4>
-                <span>{article.domain}</span>
-                <span>{`, ${article.seenDate}`}</span>
+                <h4>
+                  <a href={article.url} target="_blank">{article.title}</a>
+                </h4>
+                <span>{`${article.seenDate}, ${article.domain}`}</span>
               </div>
             ))}
           </div>
