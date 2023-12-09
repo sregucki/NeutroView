@@ -2,10 +2,10 @@ export interface IArticleQuery {
   keyword?: string;
   category?: string;
   timespan?: string;
-  numRecords?: number;
+  num_records?: number;
   domain?: string;
-  startDate?: string;
-  endDate?: string;
+  start_date?: string;
+  end_date?: string;
   country?: string;
 }
 
