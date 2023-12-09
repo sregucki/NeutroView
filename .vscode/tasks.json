@@ -1,0 +1,19 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "run-client",
+      "type": "shell",
+      "command": "config/run-client.sh"
+    },
+    {
+      "label": "run-server",
+      "type": "shell",
+      "command": "config/run-server.sh"
+    },
+    {
+      "label": "run-app",
+      "dependsOn": ["run-server", "run-client"]
+    }
+  ]
+}
