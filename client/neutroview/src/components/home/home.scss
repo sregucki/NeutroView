@@ -1,7 +1,7 @@
 @import "../../base-styles.scss";
-@import "../home/home-section-local-news.scss";
-@import "../home/home-section-top-news.scss";
-@import "../home/home-section-headlines.scss";
+@import "../home/headlines/_headlines.scss";
+@import "../home/top-stories/_top_stories.scss";
+@import "../home/local-news/_local_news";
 
 h2 {
   font-size: 1.8rem;
@@ -100,6 +100,6 @@ button {
   color: inherit;
 }
 
-.story-container-long-desc h4 a:hover{
+.story-container-long-desc h4 a:hover {
   text-decoration: underline;
 }

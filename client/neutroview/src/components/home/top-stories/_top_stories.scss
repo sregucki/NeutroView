@@ -26,7 +26,6 @@
   text-decoration: none;
 }
 
-
 #top-news-stories {
   border-left: none;
   padding-right: 20px;
@@ -41,7 +40,7 @@
   flex-direction: column;
   align-content: center;
   background-color: $base-color-light-black;
-  height: 480px;
+  height: 450px;
   width: 100%;
   color: white;
 }
@@ -62,14 +61,14 @@
   align-self: center;
   width: 100%;
   height: 160px;
-  background-image: url("../../../public/isr-pal.png");
+  background-image: url("../../../../public/isr-pal.png");
   background-position: center;
 }
 
 #timeline-explore {
   width: 90%;
   border: 1px solid white;
-  margin-top: 25px;
+  margin-top: 50px;
   padding-top: 5px;
   padding-bottom: 5px;
   border-radius: 5px;
