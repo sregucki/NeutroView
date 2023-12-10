@@ -1,9 +1,14 @@
 import moment from "moment";
-import { IArticleQuery } from "../types/api";
 import { ARTICLE_API_BASE_URL } from "../constants/ArticleApiConstants";
+import { IArticleQuery } from "../types/ApiTypes";
 
 export function getArticlesApiUrl(articleQuery: IArticleQuery): string {
-  return `${ARTICLE_API_BASE_URL}/articles?keyword=${articleQuery.keyword}&country=${articleQuery.country}&category=${articleQuery.category}&timespan=${articleQuery.timespan}&num_records=${articleQuery.num_records}&domain=${articleQuery.domain}`;
+  return `${ARTICLE_API_BASE_URL}/articles?keyword=${articleQuery.keyword} \
+  &country=${articleQuery.country} \ 
+  &category=${articleQuery.category} \
+  &timespan=${articleQuery.timespan} \
+  &num_records=${articleQuery.num_records} \
+  &domain=${articleQuery.domain}`;
 }
 
 export function mapArticleToJson(data: any) {
