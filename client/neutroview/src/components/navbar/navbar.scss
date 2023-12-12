@@ -45,14 +45,22 @@
 }
 
 .navbar-main-content > div:not(:first-child) {
-  padding-left: 25px;
+  padding-left: 35px;
 }
 
 .navbar-bottom-item a {
   color: $base-color-light-black;
   text-decoration: none;
+  width: fit-content;
+  text-wrap:nowrap;
 }
 
 .navbar-bottom-item a:hover {
   cursor: pointer;
+}
+
+.navbar-bottom-item img {
+  display: block;
+  height: inherit;
+  width: 75%
 }

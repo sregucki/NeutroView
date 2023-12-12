@@ -32,6 +32,9 @@ function Navbar() {
       <div className="navbar-bottom">
         <div className="navbar-main-content">
           <div className="navbar-bottom-item">
+            <img src="logo.svg"></img>
+          </div>
+          <div className="navbar-bottom-item">
             <a href="/">Home</a>
           </div>
           <div className="navbar-bottom-item">
