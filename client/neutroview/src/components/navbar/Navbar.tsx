@@ -1,3 +1,5 @@
+import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useEffect, useState } from "react";
 import "./navbar.scss";
 
@@ -45,6 +47,12 @@ function Navbar() {
           </div>
           <div className="navbar-bottom-item">
             <a>US</a>
+          </div>
+          <div className="navbar-bottom-item">
+            <div className="navbar-search-bar">
+              <FontAwesomeIcon icon={faMagnifyingGlass} />
+              <input type="text" placeholder="Search"></input>
+            </div>
           </div>
         </div>
       </div>

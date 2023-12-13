@@ -64,3 +64,21 @@
   height: inherit;
   width: 75%
 }
+
+.navbar-search-bar {
+  height: 40px;
+  border: 1px solid $base-color-line;
+  border-radius: 5px;
+  width: 250px;
+  display: inline-block;
+  padding-left: 5px;
+}
+
+.navbar-search-bar input {
+  height: 100%;
+  width: 80%;
+  border: none;
+  outline: none;
+  padding-left: 10px;
+  font-size: 16px;
+}
