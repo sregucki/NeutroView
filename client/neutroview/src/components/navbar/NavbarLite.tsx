@@ -1,10 +1,10 @@
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useEffect, useState } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useNavigate } from "react-router-dom";
 import "./navbar.scss";
 
-function Navbar() {
+function NavbarLite() {
   const [currentDatetime, setCurrentDatetime] = useState(new Date());
   const navigate = useNavigate();
   useEffect(() => {
@@ -13,7 +13,6 @@ function Navbar() {
     }, 1000);
     return () => clearInterval(interval);
   });
-
   return (
     <div className="navbar-main">
       <div className="navbar-top">
@@ -33,21 +32,14 @@ function Navbar() {
         </div>
       </div>
       <div className="navbar-bottom">
-        <div className="navbar-main-content">
+        <div className="navbar-main-content navbar-search-bar-lite">
           <div className="navbar-bottom-item">
-            <img src="logo.svg" onClick={() => navigate("/")}></img>
-          </div>
-          <div className="navbar-bottom-item">
-            <a href="/">Home</a>
-          </div>
-          <div className="navbar-bottom-item">
-            <a>Local</a>
-          </div>
-          <div className="navbar-bottom-item">
-            <a>European Poltics</a>
-          </div>
-          <div className="navbar-bottom-item">
-            <a>US</a>
+            <img
+              src="logo.svg"
+              onClick={() => {
+                navigate("/");
+              }}
+            ></img>
           </div>
           <div className="navbar-bottom-item">
             <div className="navbar-search-bar">
@@ -61,4 +53,4 @@ function Navbar() {
   );
 }
 
-export default Navbar;
+export default NavbarLite;
