@@ -82,11 +82,20 @@ button {
 
 .story-container-long-desc {
   position: relative;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -webkit-line-clamp: 3; 
+  display: -webkit-box;
+  -moz-box-orient: vertical;
+  padding-right: 15px;
 }
 
 .story-container-long-desc h4 {
   font-size: 20px;
   margin: 0;
+
 }
 
 .story-container-long-desc span {
