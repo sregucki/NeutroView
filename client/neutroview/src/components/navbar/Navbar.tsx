@@ -5,33 +5,11 @@ import { useNavigate } from "react-router-dom";
 import "./navbar.scss";
 
 function Navbar() {
-  const [currentDatetime, setCurrentDatetime] = useState(new Date());
   const navigate = useNavigate();
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentDatetime(new Date());
-    }, 1000);
-    return () => clearInterval(interval);
-  });
 
   return (
     <div className="navbar-main">
-      <div className="navbar-top">
-        <div className="navbar-main-content">
-          <div className="navbar-top-item-datetime">
-            <span>
-              {currentDatetime.toLocaleDateString("en-US", {
-                weekday: "long",
-                year: "numeric",
-                month: "long",
-                day: "numeric",
-                hour: "numeric",
-                minute: "numeric",
-              })}
-            </span>
-          </div>
-        </div>
-      </div>
+      <NavbarTop />
       <div className="navbar-bottom">
         <div className="navbar-main-content">
           <div className="navbar-bottom-item">
@@ -61,4 +39,33 @@ function Navbar() {
   );
 }
 
+function NavbarTop() {
+  const [currentDatetime, setCurrentDatetime] = useState(new Date());
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentDatetime(new Date());
+    }, 1000);
+    return () => clearInterval(interval);
+  });
+  return (
+    <div className="navbar-top">
+      <div className="navbar-main-content">
+        <div className="navbar-top-item-datetime">
+          <span>
+            {currentDatetime.toLocaleDateString("en-US", {
+              weekday: "long",
+              year: "numeric",
+              month: "long",
+              day: "numeric",
+              hour: "numeric",
+              minute: "numeric",
+            })}
+          </span>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export default Navbar;
+export { NavbarTop };
