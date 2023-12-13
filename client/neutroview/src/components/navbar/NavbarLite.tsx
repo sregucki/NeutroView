@@ -10,7 +10,7 @@ function NavbarLite() {
     <div className="navbar-main">
       <NavbarTop />
       <div className="navbar-bottom">
-        <div className="navbar-main-content navbar-search-bar-lite">
+        <div className="navbar-main-content navbar-main-content-lite">
           <div className="navbar-bottom-item">
             <img
               src="logo.svg"
@@ -20,7 +20,7 @@ function NavbarLite() {
             ></img>
           </div>
           <div className="navbar-bottom-item">
-            <div className="navbar-search-bar">
+            <div className="navbar-search-bar navbar-search-bar-lite">
               <FontAwesomeIcon icon={faMagnifyingGlass} />
               <input type="text" placeholder="Search"></input>
             </div>
