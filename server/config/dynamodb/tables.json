@@ -1,0 +1,45 @@
+{
+  "TableName": "Articles",
+  "KeySchema": [
+    {
+      "AttributeName": "ArticleId",
+      "KeyType": "HASH"
+    },
+    {
+      "AttributeName": "SeenDate",
+      "KeyType": "RANGE"
+    }
+  ],
+  "AttributeDefinitions": [
+    {
+      "AttributeName": "ArticleId",
+      "AttributeType": "S"
+    },
+    {
+      "AttributeName": "SeenDate",
+      "AttributeType": "S"
+    }
+  ],
+  "ProvisionedThroughput": {
+    "ReadCapacityUnits": 5,
+    "WriteCapacityUnits": 5
+  },
+  "LocalSecondaryIndexes": [
+    {
+      "IndexName": "ArticleId-SeenDate-index",
+      "KeySchema": [
+        {
+          "AttributeName": "ArticleId",
+          "KeyType": "HASH"
+        },
+        {
+          "AttributeName": "SeenDate",
+          "KeyType": "RANGE"
+        }
+      ],
+      "Projection": {
+        "ProjectionType": "ALL"
+      }
+    }
+  ]
+}

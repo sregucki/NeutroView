@@ -1,0 +1,7 @@
+{
+  "dynamodb": {
+    "port": 4566,
+    "migrate": true,
+    "createTableMs": 1000
+  }
+}
