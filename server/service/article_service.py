@@ -2,6 +2,7 @@ import logging
 from dataclasses import dataclass
 from re import X
 from typing import Union
+import uuid
 
 from gdeltdoc import GdeltDoc, Filters
 from pandas import DataFrame
@@ -42,6 +43,7 @@ class ArticleService:
         if not articles.empty:
             return [
                 Article(
+                    id=str(uuid.uuid4()),
                     url=row["url"],
                     title=row["title"],
                     seen_date=row["seendate"],

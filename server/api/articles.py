@@ -47,7 +47,7 @@ async def get_articles(
         if len(response["Items"]) == 0:
             dynamodb_client.Table("Articles").put_item(
                 Item={
-                    "ArticleId": str(uuid.uuid4()),
+                    "ArticleId": article.id,
                     "SeenDate": article.seen_date,
                     "Url": article.url,
                     "Title": article.title,
