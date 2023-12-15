@@ -1,8 +1,11 @@
 import { useEffect, useRef, useState } from "react";
-import { fetchArticlesFromApi, getTopArticleProviders } from "../../../services/ArticleService";
+import {
+  fetchArticlesFromApi,
+  getTopArticleProviders,
+} from "../../../services/ArticleService";
 import { IArticle } from "../../../types/ApiTypes";
-import "../home.scss";
 import { handleImageError } from "../../../utilities/ImageUtils";
+import "../home.scss";
 
 function Headlines() {
   const wasCalled = useRef(false);
@@ -42,17 +45,34 @@ function Headlines() {
       </div>
       <div className="news-story-container-main">
         {headlines.map((article) => (
-          <div className="story-container-long" key={article.id}>
-            <div className="story-container-long-desc">
-              <h4>
-                <a href={article.url}>{article.title}</a>
-              </h4>
-              <span>{`${article.seenDate}, ${article.domain}`}</span>
-            </div>
-            <img src={article.imgUrl} onError={handleImageError}></img>
-          </div>
+          <GetArticle {...article} key={article.id} />
         ))}
       </div>
+    </div>
+  );
+}
+
+export function GetArticle(article: IArticle) {
+  const [isHovered, setIsHovered] = useState(false);
+  return (
+    <div className="story-container-long" key={article.id}>
+      <div className="story-container-long-desc">
+        <h4>
+          <a
+            href={article.url}
+            onMouseEnter={() => setIsHovered(true)}
+            onMouseLeave={() => setIsHovered(false)}
+          >
+            {article.title}
+          </a>
+        </h4>
+        <span>{`${article.seenDate}, ${article.domain}`}</span>
+      </div>
+      <img
+        src={article.imgUrl}
+        onError={handleImageError}
+        className={isHovered ? "img-opacity-low" : "opacity-normal"}
+      ></img>
     </div>
   );
 }

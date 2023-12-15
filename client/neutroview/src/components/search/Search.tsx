@@ -4,7 +4,7 @@ import {
   getTopArticleProviders,
 } from "../../services/ArticleService";
 import { IArticle } from "../../types/ApiTypes";
-import { handleImageError } from "../../utilities/ImageUtils";
+import { GetArticle } from "../home/headlines/Headlines";
 import NavbarLite from "../navbar/NavbarLite";
 import "./search.scss";
 
@@ -34,16 +34,7 @@ function Search() {
       <div className="main-container-search">
         <div className="news-story-container-main">
           {articles.map((article) => (
-            <div className="story-container-long" key={article.id}>
-              <div className="story-container-long-desc">
-                <h4>
-                  <a href={article.url}>{article.title}</a>
-                </h4>
-                <span>{`${article.seenDate}, ${article.domain}`}</span>
-              </div>
-              <img src={article.imgUrl}
-              onError={handleImageError}></img>
-            </div>
+            <GetArticle {...article} key={article.id} />
           ))}
         </div>
       </div>
