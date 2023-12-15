@@ -6,14 +6,17 @@ import "./navbar.scss";
 
 function Navbar() {
   const navigate = useNavigate();
-
   return (
     <div className="navbar-main">
       <NavbarTop />
       <div className="navbar-bottom">
         <div className="navbar-main-content">
           <div className="navbar-bottom-item">
-            <img src="logo.svg" onClick={() => navigate("/")}></img>
+            <img
+              src="logo.svg"
+              onClick={() => navigate("/")}
+              alt="Neutroview logo"
+            ></img>
           </div>
           <div className="navbar-bottom-item">
             <a href="/">Home</a>
@@ -30,13 +33,24 @@ function Navbar() {
           <div className="navbar-bottom-item">
             <div className="navbar-search-bar">
               <FontAwesomeIcon icon={faMagnifyingGlass} />
-              <input type="text" placeholder="Search"></input>
+              <input
+                type="text"
+                placeholder="Search"
+                id="search-by-keyword"
+                onKeyUp={FunctionSearchByKeyword}
+                autoComplete="one-time-code"
+              ></input>
             </div>
           </div>
         </div>
       </div>
     </div>
   );
+  function FunctionSearchByKeyword(event: any) {
+    if (event.key === "Enter") {
+      navigate(`/search/?keyword=${getInputKeywords()}`);
+    }
+  }
 }
 
 function NavbarTop() {
@@ -65,6 +79,11 @@ function NavbarTop() {
       </div>
     </div>
   );
+}
+
+function getInputKeywords(): string {
+  return (document.getElementById("search-by-keyword") as HTMLInputElement)
+    .value;
 }
 
 export default Navbar;

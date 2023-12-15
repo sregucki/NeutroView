@@ -13,16 +13,17 @@ function NavbarLite() {
         <div className="navbar-main-content navbar-main-content-lite">
           <div className="navbar-bottom-item">
             <img
-              src="logo.svg"
+              src="../logo.svg"
               onClick={() => {
                 navigate("/");
               }}
+              alt=""
             ></img>
           </div>
           <div className="navbar-bottom-item">
             <div className="navbar-search-bar navbar-search-bar-lite">
               <FontAwesomeIcon icon={faMagnifyingGlass} />
-              <input type="text" placeholder="Search"></input>
+              <input type="text" placeholder="Search" autoComplete="one-time-code"></input>
             </div>
           </div>
         </div>
