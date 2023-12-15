@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { fetchArticlesFromApi, getTopArticleProviders } from "../../../services/ArticleService";
 import { IArticle } from "../../../types/ApiTypes";
 import "../home.scss";
+import { handleImageError } from "../../../utilities/ImageUtils";
 
 function Headlines() {
   const wasCalled = useRef(false);
@@ -48,7 +49,7 @@ function Headlines() {
               </h4>
               <span>{`${article.seenDate}, ${article.domain}`}</span>
             </div>
-            <img src={article.imgUrl}></img>
+            <img src={article.imgUrl} onError={handleImageError}></img>
           </div>
         ))}
       </div>

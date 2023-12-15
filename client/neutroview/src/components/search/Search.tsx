@@ -1,6 +1,10 @@
 import { useEffect, useRef, useState } from "react";
-import { fetchArticlesFromApi, getTopArticleProviders } from "../../services/ArticleService";
+import {
+  fetchArticlesFromApi,
+  getTopArticleProviders,
+} from "../../services/ArticleService";
 import { IArticle } from "../../types/ApiTypes";
+import { handleImageError } from "../../utilities/ImageUtils";
 import NavbarLite from "../navbar/NavbarLite";
 import "./search.scss";
 
@@ -8,7 +12,6 @@ function Search() {
   const wasCalled = useRef(false);
   const keyword = window.location.href.split("keyword")[1].replace("=", "");
   const [articles, setArticles] = useState<IArticle[]>([]);
-
   useEffect(() => {
     if (wasCalled.current) return;
     wasCalled.current = true;
@@ -38,7 +41,8 @@ function Search() {
                 </h4>
                 <span>{`${article.seenDate}, ${article.domain}`}</span>
               </div>
-              <img src={article.imgUrl}></img>
+              <img src={article.imgUrl}
+              onError={handleImageError}></img>
             </div>
           ))}
         </div>
