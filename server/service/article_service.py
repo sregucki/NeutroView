@@ -22,8 +22,8 @@ class ArticleService:
             start_date=str(self.query.start_date) if self.query.start_date else None,
             end_date=str(self.query.end_date) if self.query.end_date else None,
             num_records=self.query.num_records if self.query.num_records else 0,
-            domain=self.query.domain,
-            country=self.query.country,
+            domain=[domain for domain in self.query.domain.split(",")] if self.query.domain else [],
+            country=[country for country in self.query.country.split(",")] if self.query.country else [],
         )
 
     def get_articles_gdelt(self) -> DataFrame:

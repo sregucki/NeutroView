@@ -13,16 +13,15 @@ function TopStories() {
     fetchArticlesFromApi(
       {
         keyword: "biden trump",
-        country: "US",
+        country: "US,UK",
         category: "",
-        timespan: "1d",
+        timespan: "1m",
         num_records: 10,
-        domain: "",
+        domain: "nytimes.com,bbc.co.uk,theguardian.com,cnn.com,foxnews.com",
       },
       setTopStories
     );
   }, []);
-
 
   return (
     <div className="container" id="top-news-stories">

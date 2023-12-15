@@ -13,11 +13,11 @@ function Headlines() {
     fetchArticlesFromApi(
       {
         keyword: "",
-        country: "",
+        country: "US,UK",
         category: "",
-        timespan: "1m",
+        timespan: "1w",
         num_records: 5,
-        domain: "nytimes.com",
+        domain: "nytimes.com,bbc.co.uk,theguardian.com,cnn.com,foxnews.com",
       },
       setWorldNewsArticles
     );
