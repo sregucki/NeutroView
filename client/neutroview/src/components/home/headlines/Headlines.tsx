@@ -1,34 +1,28 @@
-import React, { useEffect, useState } from "react";
-import {
-  getArticlesApiUrl,
-  mapArticleToJson,
-} from "../../../services/ArticleService";
+import { useEffect, useRef, useState } from "react";
+import { fetchArticlesFromApi } from "../../../services/ArticleService";
 import { IArticle } from "../../../types/ApiTypes";
 import "../home.scss";
 
 function Headlines() {
+  const wasCalled = useRef(false);
   const [headlines, setWorldNewsArticles] = useState<IArticle[]>([]);
+
   useEffect(() => {
-    const fetchData = async () => {
-      let headlines;
-      try {
-        headlines = await fetch(
-          getArticlesApiUrl({
-            keyword: "",
-            country: "",
-            category: "",
-            timespan: "1m",
-            num_records: 5,
-            domain: "nytimes.com",
-          })
-        );
-        setWorldNewsArticles(mapArticleToJson(await headlines?.json()));
-      } catch (e) {
-        console.error("Failed to fetch headlines articles from api");
-      }
-    };
-    fetchData();
+    if (wasCalled.current) return;
+    wasCalled.current = true;
+    fetchArticlesFromApi(
+      {
+        keyword: "",
+        country: "",
+        category: "",
+        timespan: "1m",
+        num_records: 5,
+        domain: "nytimes.com",
+      },
+      setWorldNewsArticles
+    );
   }, []);
+
   return (
     <div className="container" id="headlines">
       <div
@@ -47,7 +41,7 @@ function Headlines() {
       </div>
       <div className="news-story-container-main">
         {headlines.map((article) => (
-          <div className="story-container-long">
+          <div className="story-container-long" key={article.id}>
             <div className="story-container-long-desc">
               <h4>
                 <a href={article.url}>{article.title}</a>

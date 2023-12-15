@@ -10,6 +10,7 @@ export interface IArticleQuery {
 }
 
 export interface IArticle {
+  id: string;
   url?: string;
   title?: string;
   domain?: string;
