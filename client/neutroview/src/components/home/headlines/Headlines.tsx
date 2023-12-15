@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { fetchArticlesFromApi } from "../../../services/ArticleService";
+import { fetchArticlesFromApi, getTopArticleProviders } from "../../../services/ArticleService";
 import { IArticle } from "../../../types/ApiTypes";
 import "../home.scss";
 
@@ -17,7 +17,7 @@ function Headlines() {
         category: "",
         timespan: "1w",
         num_records: 5,
-        domain: "nytimes.com,bbc.co.uk,theguardian.com,cnn.com,foxnews.com",
+        domain: getTopArticleProviders(),
       },
       setWorldNewsArticles
     );

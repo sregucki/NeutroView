@@ -6,11 +6,15 @@ export function getArticlesApiUrl(articleQuery: IArticleQuery): string {
   return `${ARTICLE_API_BASE_URL}/articles?keyword=${articleQuery.keyword}&country=${articleQuery.country}&category=${articleQuery.category}&timespan=${articleQuery.timespan}&num_records=${articleQuery.num_records}&domain=${articleQuery.domain}`;
 }
 
-export function mapArticleToJson(data: any) {
+export function getTopArticleProviders(): string {
+  return "nytimes.com,bbc.co.uk,theguardian.com,cnn.com,foxnews.com";
+}
+
+export function mapArticleToJson(data: any): IArticle[] {
   return data.map((articles: any) => ({
     id: articles.id,
     url: articles.url,
-    title: articles.title,
+    title: articles.title.replace(/\s+/g, " "),
     domain: articles.domain,
     seenDate: moment
       .utc(articles.seen_date, "YYYYMMDDTHHmmssZ", true)
@@ -22,7 +26,7 @@ export function mapArticleToJson(data: any) {
 export async function fetchArticlesFromApi(
   query: IArticleQuery,
   dispatcher: React.Dispatch<React.SetStateAction<IArticle[]>>
-) {
+): Promise<void> {
   let response;
   try {
     response = await fetch(getArticlesApiUrl(query));
