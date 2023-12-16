@@ -22,13 +22,10 @@ function Navbar() {
             <a href="/">Home</a>
           </div>
           <div className="navbar-bottom-item">
-            <a>Local</a>
+            <a onClick={() => navigate("/search/?keyword=eu,european,union")}>European Poltics</a>
           </div>
           <div className="navbar-bottom-item">
-            <a>European Poltics</a>
-          </div>
-          <div className="navbar-bottom-item">
-            <a>US</a>
+            <a onClick={() => navigate("/search/?keyword=biden,trump,us")}>US</a>
           </div>
           <div className="navbar-bottom-item">
             <div className="navbar-search-bar">
