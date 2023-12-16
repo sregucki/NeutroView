@@ -6,6 +6,7 @@ import "./navbar.scss";
 
 function NavbarLite() {
   const navigate = useNavigate();
+  const keyword = window.location.href.split("keyword")[1].replace("=", "");
   return (
     <div className="navbar-main">
       <NavbarTop />
@@ -23,7 +24,11 @@ function NavbarLite() {
           <div className="navbar-bottom-item">
             <div className="navbar-search-bar navbar-search-bar-lite">
               <FontAwesomeIcon icon={faMagnifyingGlass} />
-              <input type="text" placeholder="Search" autoComplete="one-time-code"></input>
+              <input
+                type="text"
+                placeholder={`keyword=${keyword}`}
+                autoComplete="one-time-code"
+              ></input>
             </div>
           </div>
         </div>
