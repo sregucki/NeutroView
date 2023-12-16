@@ -17,13 +17,19 @@ class ArticleService:
 
     def get_filters(self) -> Filters:
         return Filters(
-            keyword=self.query.keyword,
+            keyword=[keyword for keyword in self.query.keyword.split(",")]
+            if self.query.keyword
+            else [],
             timespan=self.query.timespan,
             start_date=str(self.query.start_date) if self.query.start_date else None,
             end_date=str(self.query.end_date) if self.query.end_date else None,
             num_records=self.query.num_records if self.query.num_records else 0,
-            domain=[domain for domain in self.query.domain.split(",")] if self.query.domain else [],
-            country=[country for country in self.query.country.split(",")] if self.query.country else [],
+            domain=[domain for domain in self.query.domain.split(",")]
+            if self.query.domain
+            else [],
+            country=[country for country in self.query.country.split(",")]
+            if self.query.country
+            else [],
         )
 
     def get_articles_gdelt(self) -> DataFrame:
