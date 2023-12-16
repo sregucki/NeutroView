@@ -1,9 +1,11 @@
 import { useEffect, useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { fetchArticlesFromApi, getTopArticleProviders } from "../../../services/ArticleService";
 import { IArticle } from "../../../types/ApiTypes";
 import "../home.scss";
 
 function TopStories() {
+  const navigate = useNavigate();
   const wasCalled = useRef(false);
   const [TopStories, setTopStories] = useState<IArticle[]>([]);
 
@@ -12,7 +14,7 @@ function TopStories() {
     wasCalled.current = true;
     fetchArticlesFromApi(
       {
-        keyword: "biden trump",
+        keyword: "biden,trump",
         country: "US,UK",
         category: "",
         timespan: "1m",
@@ -35,7 +37,7 @@ function TopStories() {
           </span>
         </div>
         <div id="timeline-explore">
-          <button>Explore Timeline</button>
+          <button onClick={() => navigate("/search/?keyword=isreal,palestine")}>Explore Timeline</button>
         </div>
       </div>
       <h2 id="top-news-stories-h2">Top News Stories</h2>
