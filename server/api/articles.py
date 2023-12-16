@@ -11,6 +11,7 @@ from boto3.dynamodb.conditions import Key, Attr
 
 router = APIRouter()
 
+SAVE_TO_DB = False
 
 @router.get("/")
 async def get_articles(
@@ -39,20 +40,21 @@ async def get_articles(
         return JSONResponse(
             content={"message": "No articles found for given filters."}, status_code=404
         )
-    dynamodb_client = get_dynamodb_client()
-    for article in articles:
-        response = dynamodb_client.Table("Articles").scan(
-            FilterExpression=Attr("Url").eq(article.url)
-        )
-        if len(response["Items"]) == 0:
-            dynamodb_client.Table("Articles").put_item(
-                Item={
-                    "ArticleId": article.id,
-                    "SeenDate": article.seen_date,
-                    "Url": article.url,
-                    "Title": article.title,
-                    "Domain": article.domain,
-                    "ImgUrl": article.img_url,
-                },
+    if SAVE_TO_DB:
+        dynamodb_client = get_dynamodb_client()
+        for article in articles:
+            response = dynamodb_client.Table("Articles").scan(
+                FilterExpression=Attr("Url").eq(article.url)
             )
+            if len(response["Items"]) == 0:
+                dynamodb_client.Table("Articles").put_item(
+                    Item={
+                        "ArticleId": article.id,
+                        "SeenDate": article.seen_date,
+                        "Url": article.url,
+                        "Title": article.title,
+                        "Domain": article.domain,
+                        "ImgUrl": article.img_url,
+                    },
+                )
     return articles
