@@ -17,9 +17,13 @@ class ArticleService:
 
     def get_filters(self) -> Filters:
         return Filters(
-            keyword=[keyword for keyword in self.query.keyword.split(",")]
+            keyword=(
+                self.query.keyword
+                if len(self.query.keyword.split(",")) == 1
+                else self.query.keyword.split(",")
+            )
             if self.query.keyword
-            else [],
+            else None,
             timespan=self.query.timespan,
             start_date=str(self.query.start_date) if self.query.start_date else None,
             end_date=str(self.query.end_date) if self.query.end_date else None,
