@@ -29,7 +29,9 @@ function Navbar() {
           </div>
           <div className="navbar-bottom-item">
             <div className="navbar-search-bar">
-              <FontAwesomeIcon icon={faMagnifyingGlass} />
+              <div className="icon-holder">
+                <FontAwesomeIcon icon={faMagnifyingGlass} />
+              </div>
               <input
                 type="text"
                 placeholder="Search"
