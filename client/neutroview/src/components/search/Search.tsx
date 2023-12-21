@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import { useLocation } from "react-router-dom";
 import {
   fetchArticlesFromApi,
   getTopArticleProviders,
@@ -9,24 +10,27 @@ import NavbarLite from "../navbar/NavbarLite";
 import "./search.scss";
 
 function Search() {
-  const wasCalled = useRef(false);
-  const keyword = window.location.href.split("keyword")[1].replace("=", "");
   const [articles, setArticles] = useState<IArticle[]>([]);
+  const location = useLocation();
+  let currentLocation: any;
   useEffect(() => {
-    if (wasCalled.current) return;
-    wasCalled.current = true;
+    if (currentLocation === location) return;
+    currentLocation = location;
+    const params = getUrlParams(location.search);
     fetchArticlesFromApi(
       {
-        keyword: keyword,
+        keyword: params.get("keyword") || "",
         country: "UK,US",
         category: "",
-        timespan: "1m",
+        timespan: params.get("timespan") || "",
         num_records: 10,
+        start_date: params.get("start_date") || "",
+        end_date: params.get("end_date") || "",
         domain: getTopArticleProviders(),
       },
       setArticles
     );
-  }, []);
+  }, [location]);
 
   return (
     <div>
@@ -40,6 +44,10 @@ function Search() {
       </div>
     </div>
   );
+}
+
+function getUrlParams(url: string) {
+  return new URLSearchParams(url);
 }
 
 export default Search;

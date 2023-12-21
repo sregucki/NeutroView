@@ -5,15 +5,41 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { getTopArticleProviders } from "../../services/ArticleService";
 import { NavbarTop } from "./Navbar";
 import "./navbar.scss";
 
 function NavbarLite() {
   const navigate = useNavigate();
   const [isVisible, setIsVisible] = useState(false);
-  const keyword = window.location.href.split("keyword")[1].replace("=", "");
   const toggleVisibility = () => {
     setIsVisible(!isVisible);
+  };
+  const [artcileQuery, setArticleQuery] = useState({
+    keyword: "",
+    country: "UK,US",
+    category: "",
+    timespan: "",
+    num_records: 5,
+    domain: getTopArticleProviders(),
+    start_date: "",
+    end_date: "",
+  });
+  const handleKeywordChange = (e: any) => {
+    setArticleQuery({ ...artcileQuery, keyword: e.target.value });
+  };
+  const handleTimespanChange = (e: any) => {
+    setArticleQuery({ ...artcileQuery, timespan: e.target.value });
+  };
+  const handleStartDateChange = (e: any) => {
+    setArticleQuery({ ...artcileQuery, start_date: e.target.value });
+  };
+  const handleEndDateChange = (e: any) => {
+    setArticleQuery({ ...artcileQuery, end_date: e.target.value });
+  };
+
+  const handleSubmit = (e: any) => {
+    console.log(artcileQuery);
   };
   return (
     <div className="navbar-main">
@@ -33,12 +59,18 @@ function NavbarLite() {
             <div className="navbar-search-bar-lite-main">
               <div className="navbar-search-bar navbar-search-bar-lite">
                 <div className="icon-holder">
-                  <FontAwesomeIcon icon={faMagnifyingGlass} />
+                  <FontAwesomeIcon
+                    icon={faMagnifyingGlass}
+                    onClick={handleSubmit}
+                  />
                 </div>
                 <input
                   type="text"
-                  placeholder={`keyword=${keyword}`}
+                  placeholder={`keyword=${artcileQuery.keyword}`}
                   autoComplete="one-time-code"
+                  value={artcileQuery.keyword}
+                  onChange={handleKeywordChange}
+                  onKeyUp={FunctionSearchByAdditionalParams}
                 ></input>
                 <div
                   className="icon-holder expand-options"
@@ -50,24 +82,44 @@ function NavbarLite() {
               {isVisible && (
                 <div className="additional-search-options">
                   <table>
-                    <tr>
-                      <th>Timespan: </th>
-                      <th>
-                        <select name="timespan">
-                          <option value="1d">1 Day</option>
-                          <option value="1w">1 Week</option>
-                          <option value="1m">1 Month</option>
-                        </select>
-                      </th>
-                    </tr>
-                    <tr>
-                      <th>Start Date: </th>
-                      <input type="date" name="start-date" />
-                    </tr>
-                    <tr>
-                      <th>End Date: </th>
-                      <input type="date" name="end-date" />
-                    </tr>
+                    <tbody>
+                      <tr>
+                        <td>Timespan: </td>
+                        <td>
+                          <select
+                            name="timespan"
+                            value={artcileQuery.timespan}
+                            onChange={handleTimespanChange}
+                          >
+                            <option value="1d">1 Day</option>
+                            <option value="1w">1 Week</option>
+                            <option value="1m">1 Month</option>
+                          </select>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>Start Date: </td>
+                        <td>
+                          <input
+                            type="date"
+                            name="start-date"
+                            value={artcileQuery.start_date}
+                            onChange={handleStartDateChange}
+                          />
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>End Date: </td>
+                        <td>
+                          <input
+                            type="date"
+                            name="end-date"
+                            value={artcileQuery.end_date}
+                            onChange={handleEndDateChange}
+                          />
+                        </td>
+                      </tr>
+                    </tbody>
                   </table>
                 </div>
               )}
@@ -77,6 +129,15 @@ function NavbarLite() {
       </div>
     </div>
   );
+  function FunctionSearchByAdditionalParams(event: any) {
+    if (event.key === "Enter") {
+      const keyword = artcileQuery.keyword ? `?keyword=${artcileQuery.keyword}` : "";
+      const timespan = artcileQuery.timespan ? `&timespan=${artcileQuery.timespan}` : "";
+      const start_date = artcileQuery.start_date ? `&start_date=${artcileQuery.start_date}` : "";
+      const end_date = artcileQuery.end_date ? `&end_date=${artcileQuery.end_date}` : "";
+      navigate(`/search/${keyword}${timespan}${start_date}${end_date}`);
+    }
+  }
 }
 
 export default NavbarLite;

@@ -3,11 +3,19 @@ import { ARTICLE_API_BASE_URL } from "../constants/ArticleApiConstants";
 import { IArticle, IArticleQuery } from "../types/ApiTypes";
 
 export function getArticlesApiUrl(articleQuery: IArticleQuery): string {
-  return `${ARTICLE_API_BASE_URL}/articles?keyword=${articleQuery.keyword}&country=${articleQuery.country}&category=${articleQuery.category}&timespan=${articleQuery.timespan}&num_records=${articleQuery.num_records}&domain=${articleQuery.domain}`;
+  const keyword = `?keyword=${articleQuery.keyword}`;
+  const country = articleQuery.country ? `&country=${articleQuery.country}` : "";
+  const category = articleQuery.category ? `&category=${articleQuery.category}` : "";
+  const timespan = articleQuery.timespan ? `&timespan=${articleQuery.timespan}` : "";
+  const num_records = articleQuery.num_records ? `&num_records=${articleQuery.num_records}` : "";
+  const domain = articleQuery.domain ? `&domain=${articleQuery.domain}` : "";
+  const start_date = articleQuery.start_date ? `&start_date=${articleQuery.start_date}` : "";
+  const end_date = articleQuery.end_date ? `&end_date=${articleQuery.end_date}` : "";
+  return `${ARTICLE_API_BASE_URL}/articles/${keyword}${country}${category}${timespan}${num_records}${domain}${start_date}${end_date}`;
 }
 
 export function getTopArticleProviders(): string {
-  return "nytimes.com,bbc.co.uk,theguardian.com,cnn.com,foxnews.com";
+  return "nytimes.com,bbc.co.uk,theguardian.com,foxnews.com";
 }
 
 export function mapArticleToJson(data: any): IArticle[] {

@@ -16,9 +16,8 @@ function Headlines() {
     wasCalled.current = true;
     fetchArticlesFromApi(
       {
-        keyword: "",
+        keyword: "european union",
         country: "US,UK",
-        category: "",
         timespan: "1w",
         num_records: 5,
         domain: getTopArticleProviders(),
