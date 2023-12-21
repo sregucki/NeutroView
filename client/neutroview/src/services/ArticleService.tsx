@@ -18,7 +18,7 @@ export function getTopArticleProviders(): string {
   return "nytimes.com,bbc.co.uk,theguardian.com,foxnews.com";
 }
 
-export function mapArticleToJson(data: any): IArticle[] {
+export function mapArticleToJson(data: any, keywords: string[]): IArticle[] {
   return data.map((articles: any) => ({
     id: articles.id,
     url: articles.url,
@@ -28,6 +28,7 @@ export function mapArticleToJson(data: any): IArticle[] {
       .utc(articles.seen_date, "YYYYMMDDTHHmmssZ", true)
       .format("DD MMM"),
     imgUrl: articles.img_url,
+    keywords: keywords,
   }));
 }
 
@@ -38,7 +39,7 @@ export async function fetchArticlesFromApi(
   let response;
   try {
     response = await fetch(getArticlesApiUrl(query));
-    dispatcher(mapArticleToJson(await response?.json()));
+    dispatcher(mapArticleToJson(await response?.json(), query.keyword?.split(",") || []));
   } catch (e) {
     console.error("Failed to fetch articles from api");
   }

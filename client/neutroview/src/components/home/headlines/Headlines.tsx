@@ -56,16 +56,16 @@ export function GetArticle(article: IArticle) {
   return (
     <div className="story-container-long" key={article.id}>
       <div className="story-container-long-desc">
-        <h4>
-          <a
-            href={article.url}
-            onMouseEnter={() => setIsHovered(true)}
-            onMouseLeave={() => setIsHovered(false)}
-          >
-            {article.title}
-          </a>
-        </h4>
-        <span>{`${article.seenDate}, ${article.domain}`}</span>
+        <a
+          href={article.url}
+          onMouseEnter={() => setIsHovered(true)}
+          onMouseLeave={() => setIsHovered(false)}
+        >
+          <h4>
+            {highlitghtKeywords(article.title || "", article.keywords || [])}
+          </h4>
+        </a>
+        <span className="story-container-long-meta">{`${article.seenDate}, ${article.domain}`}</span>
       </div>
       <img
         src={article.imgUrl}
@@ -74,6 +74,14 @@ export function GetArticle(article: IArticle) {
       ></img>
     </div>
   );
+}
+
+function highlitghtKeywords(text: string, keywords: string[]) {
+  keywords.forEach((keyword) => {
+    const regex = new RegExp(keyword, "gi");
+    text = text.replace(regex, `<span class="highlight-keyword">${text.match(regex)?.[0]}</span>`);
+  });
+  return <span dangerouslySetInnerHTML={{ __html: text }}></span>;
 }
 
 export default Headlines;

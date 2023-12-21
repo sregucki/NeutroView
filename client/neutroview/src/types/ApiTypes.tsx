@@ -16,4 +16,5 @@ export interface IArticle {
   domain?: string;
   seenDate?: string;
   imgUrl?: string;
+  keywords?: string[];
 }
