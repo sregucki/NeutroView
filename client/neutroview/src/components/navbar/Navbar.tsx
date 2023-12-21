@@ -67,6 +67,7 @@ function Navbar() {
                 <div className="icon-holder">
                   <FontAwesomeIcon
                     icon={faMagnifyingGlass}
+                    onClick={searchByAdditionalParamsClick}
                   />
                 </div>
                 <input
@@ -75,7 +76,7 @@ function Navbar() {
                   autoComplete="one-time-code"
                   value={artcileQuery.keyword}
                   onChange={handleKeywordChange}
-                  onKeyUp={FunctionSearchByAdditionalParams}
+                  onKeyUp={searchByAdditionalParamsEnter}
                 ></input>
                 <div
                   className="icon-holder expand-options"
@@ -134,22 +135,28 @@ function Navbar() {
       </div>
     </div>
   );
-  function FunctionSearchByAdditionalParams(event: any) {
+  function searchByAdditionalParamsEnter(event: any) {
     if (event.key === "Enter") {
-      const keyword = artcileQuery.keyword
-        ? `?keyword=${artcileQuery.keyword}`
-        : "";
-      const timespan = artcileQuery.timespan
-        ? `&timespan=${artcileQuery.timespan}`
-        : "";
-      const start_date = artcileQuery.start_date
-        ? `&start_date=${artcileQuery.start_date}`
-        : "";
-      const end_date = artcileQuery.end_date
-        ? `&end_date=${artcileQuery.end_date}`
-        : "";
-      navigate(`/search/${keyword}${timespan}${start_date}${end_date}`);
+      navigate(getArticlePath());
     }
+  }
+  function searchByAdditionalParamsClick() {
+    navigate(getArticlePath());
+  }
+  function getArticlePath(): string {
+    const keyword = artcileQuery.keyword
+      ? `?keyword=${artcileQuery.keyword}`
+      : "";
+    const timespan = artcileQuery.timespan
+      ? `&timespan=${artcileQuery.timespan}`
+      : "";
+    const start_date = artcileQuery.start_date
+      ? `&start_date=${artcileQuery.start_date}`
+      : "";
+    const end_date = artcileQuery.end_date
+      ? `&end_date=${artcileQuery.end_date}`
+      : "";
+    return `/search/${keyword}${timespan}${start_date}${end_date}`;
   }
 }
 
