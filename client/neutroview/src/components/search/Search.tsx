@@ -37,9 +37,14 @@ function Search() {
       <NavbarLite />
       <div className="main-container-search">
         <div className="news-story-container-main">
-          {articles.map((article) => (
-            <GetArticle {...article} key={article.id} />
-          ))}
+          {articles
+            .map((article) => <GetArticle {...article} key={article.id} />)
+            .sort((a, b) => {
+              return (
+                new Date(b.props.seenDate).getTime() -
+                new Date(a.props.seenDate).getTime()
+              );
+            })}
         </div>
       </div>
     </div>
