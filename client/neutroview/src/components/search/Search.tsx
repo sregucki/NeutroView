@@ -51,7 +51,7 @@ function Search() {
   );
 }
 
-function getUrlParams(url: string) {
+export function getUrlParams(url: string) {
   return new URLSearchParams(url);
 }
 

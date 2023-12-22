@@ -188,10 +188,5 @@ function NavbarTop() {
   );
 }
 
-function getInputKeywords(): string {
-  return (document.getElementById("search-by-keyword") as HTMLInputElement)
-    .value;
-}
-
 export default Navbar;
 export { NavbarTop };

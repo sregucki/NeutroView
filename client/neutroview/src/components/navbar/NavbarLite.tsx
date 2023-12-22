@@ -4,12 +4,14 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { getTopArticleProviders } from "../../services/ArticleService";
+import { getUrlParams } from "../search/Search";
 import { NavbarTop } from "./Navbar";
 import "./navbar.scss";
 
 function NavbarLite() {
+  const location = useLocation();
   const navigate = useNavigate();
   const [isVisible, setIsVisible] = useState(false);
   const toggleVisibility = () => {
@@ -62,7 +64,9 @@ function NavbarLite() {
                 </div>
                 <input
                   type="text"
-                  placeholder={`keyword=${artcileQuery.keyword}`}
+                  placeholder={`keyword=${getUrlParams(location.search).get(
+                    "keyword"
+                  )}`}
                   autoComplete="one-time-code"
                   value={artcileQuery.keyword}
                   onChange={handleKeywordChange}
@@ -128,10 +132,12 @@ function NavbarLite() {
   function searchByAdditionalParamsEnter(event: any) {
     if (event.key === "Enter") {
       navigate(getArticlePath());
+      window.location.reload();
     }
   }
   function searchByAdditionalParamsClick() {
     navigate(getArticlePath());
+    window.location.reload();
   }
   function getArticlePath(): string {
     const keyword = artcileQuery.keyword
