@@ -1,3 +1,5 @@
+import { faSquare } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useEffect, useRef, useState } from "react";
 import {
   fetchArticlesFromApi,
@@ -75,30 +77,52 @@ export function GetArticle(article: IArticle) {
         </a>
         <div className="story-container-long-meta">
           <div className="sentiment-bar-main">
+            <div className="tooltiptext">
+              <ul>
+                <li>
+                  <FontAwesomeIcon
+                    icon={faSquare}
+                    style={{ color: "#802727" }}
+                  />
+                  {" "}Negative: {`${((textAnalysis?.sentiment["neg"] || 0) * 100).toFixed(1)}%`}
+                </li>
+                <li>
+                  <FontAwesomeIcon
+                    icon={faSquare}
+                    style={{ color: "#ffffff" }}
+                  />{" "}
+                  Neutral: {`${((textAnalysis?.sentiment["neu"] || 0) * 100).toFixed(1)}%`}
+                </li>
+                <li>
+                  <FontAwesomeIcon
+                    icon={faSquare}
+                    style={{ color: "#204986" }}
+                  />
+                  {" "}Positive: {`${((textAnalysis?.sentiment["pos"] || 0) * 100).toFixed(1)}%`}
+                </li>
+              </ul>
+            </div>
             <div
               className="sentiment-bar-negative"
               style={{
                 width: `${(textAnalysis?.sentiment["neg"] || 0) * 100}%`,
               }}
-              >
-            </div>
+            ></div>
             <div
               className="sentiment-bar-neutral"
               style={{
                 width: `${(textAnalysis?.sentiment["neu"] || 0) * 100}%`,
               }}
-              >
-            </div>
+            ></div>
             <div
               className="sentiment-bar-positive"
               style={{
                 width: `${(textAnalysis?.sentiment["pos"] || 0) * 100}%`,
               }}
-              >
-            </div>
+            ></div>
           </div>
           <div className="meta-desc">
-          <span>{`${article.seenDate}, ${article.domain}`}</span>
+            <span>{`${article.seenDate}, ${article.domain}`}</span>
           </div>
         </div>
       </div>

@@ -35,6 +35,7 @@
   background-color: rgb(32, 73, 134);
 }
 
+
 .meta-desc {
   align-items: center;
   display: flex;
@@ -42,4 +43,45 @@
   font-size: 12px;
   height: 100%;
   text-align: center;
+}
+
+.sentiment-bar-main .tooltiptext {
+  visibility: hidden;
+  width: 125px;
+  background-color: #555;
+  color: #fff;
+  text-align: center;
+  padding: 5px 0;
+  border-radius: 6px;
+  position: absolute;
+  z-index: 1;
+  bottom: 125%;
+  left: 12.5%;
+  margin-left: -60px;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.sentiment-bar-main .tooltiptext::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #555 transparent transparent transparent;
+}
+
+.sentiment-bar-main:hover .tooltiptext {
+  visibility: visible;
+  opacity: 1;
+}
+
+.tooltiptext ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  text-align: left;
+  margin-left: 10px;
 }
