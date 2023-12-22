@@ -18,3 +18,8 @@ export interface IArticle {
   imgUrl?: string;
   keywords?: string[];
 }
+
+export interface ITextAnalysis {
+  most_common_words: Partial<Record<string, number>>;
+  sentiment: Partial<Record<string, number>>;
+}

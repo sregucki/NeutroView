@@ -3,7 +3,8 @@ import {
   fetchArticlesFromApi,
   getTopArticleProviders,
 } from "../../../services/ArticleService";
-import { IArticle } from "../../../types/ApiTypes";
+import { fetchTextAnalysisFromApi } from "../../../services/TextAnalysisService";
+import { IArticle, ITextAnalysis } from "../../../types/ApiTypes";
 import { handleImageError } from "../../../utilities/ImageUtils";
 import "../home.scss";
 
@@ -53,6 +54,13 @@ function Headlines() {
 
 export function GetArticle(article: IArticle) {
   const [isHovered, setIsHovered] = useState(false);
+  const [textAnalysis, setTextAnalysis] = useState<ITextAnalysis>();
+  const wasCalled = useRef(false);
+  useEffect(() => {
+    if (wasCalled.current) return;
+    wasCalled.current = true;
+    fetchTextAnalysisFromApi(article.url || "", setTextAnalysis);
+  }, [textAnalysis]);
   return (
     <div className="story-container-long" key={article.id}>
       <div className="story-container-long-desc">
@@ -79,7 +87,10 @@ export function GetArticle(article: IArticle) {
 function highlitghtKeywords(text: string, keywords: string[]) {
   keywords.forEach((keyword) => {
     const regex = new RegExp(keyword, "gi");
-    text = text.replace(regex, `<span class="highlight-keyword">${text.match(regex)?.[0]}</span>`);
+    text = text.replace(
+      regex,
+      `<span class="highlight-keyword">${text.match(regex)?.[0]}</span>`
+    );
   });
   return <span dangerouslySetInnerHTML={{ __html: text }}></span>;
 }
