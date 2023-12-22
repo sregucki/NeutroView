@@ -37,7 +37,7 @@ function Headlines() {
       >
         <div id="headline-container-main-title">
           <h1>
-            <a href={headlines[0]?.url} target="_blank">
+            <a href={headlines[0]?.url} target="_blank" rel="noreferrer">
               {headlines[0]?.title}
             </a>
           </h1>
@@ -73,9 +73,37 @@ export function GetArticle(article: IArticle) {
             {highlitghtKeywords(article.title || "", article.keywords || [])}
           </h4>
         </a>
-        <span className="story-container-long-meta">{`${article.seenDate}, ${article.domain}`}</span>
+        <div className="story-container-long-meta">
+          <div className="sentiment-bar-main">
+            <div
+              className="sentiment-bar-negative"
+              style={{
+                width: `${(textAnalysis?.sentiment["neg"] || 0) * 100}%`,
+              }}
+              >
+            </div>
+            <div
+              className="sentiment-bar-neutral"
+              style={{
+                width: `${(textAnalysis?.sentiment["neu"] || 0) * 100}%`,
+              }}
+              >
+            </div>
+            <div
+              className="sentiment-bar-positive"
+              style={{
+                width: `${(textAnalysis?.sentiment["pos"] || 0) * 100}%`,
+              }}
+              >
+            </div>
+          </div>
+          <div className="meta-desc">
+          <span>{`${article.seenDate}, ${article.domain}`}</span>
+          </div>
+        </div>
       </div>
       <img
+        alt="article"
         src={article.imgUrl}
         onError={handleImageError}
         className={isHovered ? "img-opacity-low" : "opacity-normal"}

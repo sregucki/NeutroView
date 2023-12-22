@@ -120,7 +120,11 @@ button {
 }
 
 .story-container-long-meta {
-  font-size: 14px;
-  position: absolute;
+  align-items: center;
   bottom: 0;
+  display: flex;
+  flex-direction: row;
+  height: 20px;
+  position: absolute;
+  width: 100%;
 }

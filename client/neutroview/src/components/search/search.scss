@@ -2,10 +2,44 @@
 @import "../home/home.scss";
 
 .main-container-search {
-  min-height: 1100px;
-  width: 800px;
-  margin: 0 auto 0 auto;
   display: flex;
   flex-direction: row;
   justify-content: center;
+  margin: 0 auto 0 auto;
+  min-height: 1100px;
+  width: 800px;
+}
+
+.sentiment-bar-main {
+  color: white;
+  display: flex;
+  flex-direction: row;
+  font-size: 12px;
+  font-weight: 600;
+  height: 10px;
+  margin-right: 10px;
+  text-align: center;
+  width: 150px;
+}
+
+.sentiment-bar-negative {
+  background-color: rgb(128, 39, 39);
+}
+
+.sentiment-bar-neutral {
+  background-color: rgb(255, 255, 255);
+  color: black;
+}
+
+.sentiment-bar-positive {
+  background-color: rgb(32, 73, 134);
+}
+
+.meta-desc {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  font-size: 12px;
+  height: 100%;
+  text-align: center;
 }

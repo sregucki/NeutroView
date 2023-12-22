@@ -10,7 +10,6 @@ function mapTextAnalysisToJson(data: any): ITextAnalysis {
     most_common_words: data.most_common_words,
     sentiment: data.sentiment,
   };
-  console.log(text_analysis);
   return text_analysis;
 }
 
