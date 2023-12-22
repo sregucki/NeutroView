@@ -6,8 +6,8 @@ router = APIRouter()
 
 @router.get("/")
 async def get_analysis(
-    url: str,
+    article_url: str,
 ) -> dict[str, dict[str, float]]:
     return text_analysis(
-        url=url,
+        url=article_url,
     )
