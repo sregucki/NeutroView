@@ -58,6 +58,11 @@ export function GetArticle(article: IArticle) {
   const [isHovered, setIsHovered] = useState(false);
   const [textAnalysis, setTextAnalysis] = useState<ITextAnalysis>();
   const wasCalled = useRef(false);
+  const mostFrequentWords = textAnalysis?.most_common_words
+    ? Object.keys(textAnalysis?.most_common_words).map(
+        (word) => word.charAt(0).toUpperCase() + word.slice(1)
+      ).join(" · ")
+    : [];
   useEffect(() => {
     if (wasCalled.current) return;
     wasCalled.current = true;
@@ -66,6 +71,9 @@ export function GetArticle(article: IArticle) {
   return (
     <div className="story-container-long" key={article.id}>
       <div className="story-container-long-desc">
+        <span className="most-frequent-words">
+          {mostFrequentWords}
+        </span>
         <a
           href={article.url}
           onMouseEnter={() => setIsHovered(true)}
@@ -83,22 +91,31 @@ export function GetArticle(article: IArticle) {
                   <FontAwesomeIcon
                     icon={faSquare}
                     style={{ color: "#802727" }}
-                  />
-                  {" "}Negative: {`${((textAnalysis?.sentiment["neg"] || 0) * 100).toFixed(1)}%`}
+                  />{" "}
+                  Negative:{" "}
+                  {`${((textAnalysis?.sentiment["neg"] || 0) * 100).toFixed(
+                    1
+                  )}%`}
                 </li>
                 <li>
                   <FontAwesomeIcon
                     icon={faSquare}
                     style={{ color: "#ffffff" }}
                   />{" "}
-                  Neutral: {`${((textAnalysis?.sentiment["neu"] || 0) * 100).toFixed(1)}%`}
+                  Neutral:{" "}
+                  {`${((textAnalysis?.sentiment["neu"] || 0) * 100).toFixed(
+                    1
+                  )}%`}
                 </li>
                 <li>
                   <FontAwesomeIcon
                     icon={faSquare}
                     style={{ color: "#204986" }}
-                  />
-                  {" "}Positive: {`${((textAnalysis?.sentiment["pos"] || 0) * 100).toFixed(1)}%`}
+                  />{" "}
+                  Positive:{" "}
+                  {`${((textAnalysis?.sentiment["pos"] || 0) * 100).toFixed(
+                    1
+                  )}%`}
                 </li>
               </ul>
             </div>

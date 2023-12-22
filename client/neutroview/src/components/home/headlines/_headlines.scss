@@ -1,26 +1,26 @@
 #headlines {
-  width: 800px;
   border: none;
   display: flex;
   flex-direction: column;
+  width: 800px;
 }
 
 #headline-container-main {
-  width: 95%;
-  height: 400px;
+  align-content: center;
+  align-self: center;
   background-position: center;
   background-size: cover;
   display: flex;
-  flex-wrap: wrap;
   flex-direction: column;
-  align-content: center;
+  flex-wrap: wrap;
+  height: 400px;
   justify-content: flex-end;
-  align-self: center;
+  width: 95%;
 }
 
 #headline-container-main:hover {
-  opacity: 0.8;
   -webkit-transition: 0.3s ease-in-out;
+  opacity: 0.8;
   transition: 0.3s ease-in-out;
 }
 
@@ -46,4 +46,9 @@
 
 .highlight-keyword {
   background-color: rgba(66, 133, 244, 0.3);
+}
+
+.most-frequent-words {
+  font-size: 13px;
+  font-weight: 400;
 }
