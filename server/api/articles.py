@@ -1,6 +1,5 @@
 from datetime import date
 from typing import Optional
-import uuid
 from fastapi import APIRouter
 from fastapi.responses import JSONResponse
 
