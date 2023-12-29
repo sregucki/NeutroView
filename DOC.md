@@ -1,28 +1,5 @@
 # Webowy agregator newsów (wiadomości)
 
-## Cel:
-
-Stworzenie aplikacji webowej dostarczającej użytkownikowi wiadomości z różnych portali informacyjnych.
-Umożliwienie dostosowania wyświetlanych treści na podstawie indywidualnych preferencji użytkownika.
-
-### Funkcje:
-
-- Interfejs użytkownika prezentujący newsy
-- Możliwość filtracji i wyszukiwania wiadomości przez użytkownika wg:
-  - słów kluczowych
-  - zakresu dat publikacji
-  - wybranych źródeł informacji
-- Dla każdego artykułu:
-  - wyświetlenie źródła
-  - wyświetlenie daty publikacji
-  - wyświetlenie tytułu
-  - wyświetlenie obrazka
-  - wyświetlanie trzech słów kluczowych
-  - wyświetlenie analizy sentymentu w postaci trzech wskaźników:
-    - pozytywnego
-    - neutralnego
-    - negatywnego
-
 ## 1. Cel projektu:
 
 Stworzenie aplikacji webowej dostarczającej użytkownikowi wiadomości z różnych portali informacyjnych.
@@ -64,7 +41,7 @@ jest przetwarzana przez aplikację kliencką i wyświetlana użytkownikowi.
 Model aplikacji tworzą dwie klasy `Article` oraz `ArticleQuery` znajdujące się w katalogu _models_.
 Struktura klasy `Article`:
 
-    [tutaj zdj]
+![Article class](doc/ArticleSnippet.png)
 
 Klasa zawiera pola odpowiadające za przechowywanie informacji o artykule prasowym takie jak:
 
@@ -77,7 +54,7 @@ Klasa zawiera pola odpowiadające za przechowywanie informacji o artykule prasow
 
 Struktura `ArticleQuery`:
 
-    [tutaj zdj]
+![ArticleQuery class](doc/ArticleQuerySnippet.png)
 
 Klasa zawiera pola odpowiadające za przechowywanie informacji o zapytaniu użytkownika takie jak:
 
@@ -143,7 +120,7 @@ W podkatalogu _home_ znajdują się komponenty odpowiedzialne za wyświetlanie s
 - **top-stories** - komponent wyświetlający najpopularniejsze artykuły prasowe w lewej dolnej części strony głównej
 
 W folderze _navbar_ znajdują się pliki komponentu odpowiedzialny za wyświetlanie paska nawigacyjnego, który jest widoczny na każdej stronie aplikacji w górnej części ekranu.
-Folder _search_ zawiera komponenty odpowiedzialne za wyświetlanie wyników wyszukiwania artykułów prasowych na podstawie parametrów wprowadzonych przez użytkownika.
+Folder _search_ zawiera komponenty odpowiedzialne za wyświetlanie wyników wyszukiwania artykułów prasowych na podstawie parametrów wprowadzonych przez użytkownika.``
 
 W warstie klienta istotną rolę pełnią serwisy, które są odpowiedzialne za komunikację z API warstwy serwerowej aplikacji.
 Znajdują się one w katalogu _services_ i są to:
@@ -153,3 +130,9 @@ Znajdują się one w katalogu _services_ i są to:
 - **LocationService** - serwis odpowiedzialny za pobieranie lokalizacji użytkownika na podstawie adresu IP
 
 ## 4. Prezentacja aplikacji
+
+### 4.1 Strona główna
+![Home page](doc/Home.png)
+
+### 4.2 Wyszukiwanie artykułów prasowych
+![Search](doc/Search.png)
