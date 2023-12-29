@@ -1,0 +1,1 @@
+2.766: estimate: {'keyword': 'biden,trump', 'timespan': '30m', 'num_records': 100, 'domain': 'nytimes.com,bbc.co.uk,theguardian.com,foxnews.com', 'country': 'US,UK'} 
