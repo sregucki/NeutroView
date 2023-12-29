@@ -30,6 +30,23 @@ Umożliwienie dostosowania wyświetlanych treści na podstawie indywidualnych pr
 
 ## 2. Funkcje
 
+Aplikacja umożliwia użytkownikowi przeglądanie wiadomości z różnych portali informacyjnych.
+Na stronie głównej wyświetlane są najpopularniejsze artykuły prasowe wraz z ich nagłówkami. Użytkownik ma możliwość wyszukiwania
+artykułów prasowych na podstawie słów kluczowych oraz zakresu dat publikacji.
+Pole wyszukiwania znajduje się w pasku nawigacyjnym, który jest widoczny na każdej stronie aplikacji.
+
+Po wprowadzeniu słów kluczowych oraz zakresu dat publikacji i naciśnięciu przycisku "Search"
+wyświetlane są artykuły prasowe spełniające kryteria wyszukiwania. Dla każdego artykułu wyświetlane są informacje takie jak:
+
+- źródło
+- data publikacji
+- tytuł
+- obrazek
+- trzy najczęściej występujące słowa kluczowe
+- wskaźniki sentymentu w postaci wartości liczbowych dla każdego z trzech typów sentymentu: pozytywnego, neutralnego i negatywnego
+
+Kliknięcie w tytuł artykułu przenosi użytkownika na stronę z artykułem, gdzie wyświetlany jest pełny tekst artykułu.
+
 ## 3. Wykorzystane technologie
 
 Niniejszy projekt jest aplikcacją webową typu SPA (Single Page Application) zbudowaną w oparciu o framework React.
@@ -94,8 +111,8 @@ Istotne jest zrozumienie, czy wypowiedź jest pozytywna, negatywna czy neutralna
 przez autora. Dzięki temu można ocenić ogólny sentyment wypowiedzi oraz zidentyfikować trendy i wzorce w opinii publicznej.
 [https://mfiles.pl/pl/index.php/Analiza_sentymentu]
 
-Aplikacja dokonuje analizy sentymentu artykułów prasowych, wykorzystując metody skryptu text_analysis.py, który znajduje się w
-katalogu _api_.
+Aplikacja dokonuje analizy sentymentu artykułów prasowych, wykorzystując metody skryptu text*analysis.py, który znajduje się w
+katalogu \_api*.
 Pierwszym krokiem jest pobranie artykułu prasowego, na podstawie adresu URL artykułu w metodzie `scrap_article`.
 Metoda ta wykorzystuje bibliotekę newspaper3k, która pobiera, a następnie przetwarza artykuł prasowy.
 Dalej tekst poddawany jest tokenizacji. Tokenizacja jest techniką przetwarzania wstępnego w przetwarzaniu języka naturalnego.
@@ -108,18 +125,19 @@ a pełnią jedynie funkcję gramatyczną. Znaki interpunkcyjne usuwane są w met
 Następnie tekst poddawany jest lematyzacji, czyli sprowadzeniu słów do ich podstawowej formy.
 Lematyzacja to proces grupowania różnych form fleksyjnych słowa, dzięki czemu można je analizować jako pojedynczy element.
 Lematyzacja jest podobna do stemmingu, ale dodaje kontekst do słów. Łączy więc słowa o podobnym znaczeniu w jedno słowo.
-Lematyzacja odbywa się w metodzie `lemmatize_text`. Ostatnim krokiem jest usunienięcie wyrazów niebędących rzeczownikami, które 
+Lematyzacja odbywa się w metodzie `lemmatize_text`. Ostatnim krokiem jest usunienięcie wyrazów niebędących rzeczownikami, które
 wykonywane jest w metodzie `remove_non_nouns`.
 Wynikiem procesu jest struktura typu `dict`, która zawiera wskaźniki sentymentu w postaci wartości liczbowych dla każdego z trzech
 typów sentymentu: pozytywnego, neutralnego i negatywnego. Oprócz tego struktura zawiera listę trzech najczęściej występujących słów.
 
-
 ### 3.2. Warstwa klienta (Front-end)
-Warstwa klienta została napisana w języku TypeScript X z wykorzystaniem frameworka React. 
-Tworzoją ją komponenty, które są odpowiedzialne za wyświetlanie danych użytkownikowi oraz za interakcję z użytkownikiem. 
-Komponenty znajdują się w katalogu _components_ i składają się ze stylów - pliki z rozszerzeniem ".scss", 
+
+Warstwa klienta została napisana w języku TypeScript X z wykorzystaniem frameworka React.
+Tworzoją ją komponenty, które są odpowiedzialne za wyświetlanie danych użytkownikowi oraz za interakcję z użytkownikiem.
+Komponenty znajdują się w katalogu _components_ i składają się ze stylów - pliki z rozszerzeniem ".scss",
 jak równie z plików z rozszerzeniem ".tsx", które zawierają logikę komponentu.
 W podkatalogu _home_ znajdują się komponenty odpowiedzialne za wyświetlanie strony głównej aplikacji, a są to
+
 - **headlines** - komponent wyświetlający nagłówki artykułów prasowych w centralnej części strony głównej
 - **local-news** - komponent ustalający słowo kluczowe na podstawie pobranej lokalizacji użytkownika
 - **top-stories** - komponent wyświetlający najpopularniejsze artykuły prasowe w lewej dolnej części strony głównej
@@ -129,11 +147,9 @@ Folder _search_ zawiera komponenty odpowiedzialne za wyświetlanie wyników wysz
 
 W warstie klienta istotną rolę pełnią serwisy, które są odpowiedzialne za komunikację z API warstwy serwerowej aplikacji.
 Znajdują się one w katalogu _services_ i są to:
+
 - **ArticleService** - serwis odpowiedzialny za pobieranie artykułów prasowych w formacie JSON z API warstwy serwerowej
 - **TextAnalysisService** - serwis odpowiedzialny za analizę sentymentu artykułów prasowych na podstawie adresu URL artykułu
 - **LocationService** - serwis odpowiedzialny za pobieranie lokalizacji użytkownika na podstawie adresu IP
 
 ## 4. Prezentacja aplikacji
-
-## 4. 
-
