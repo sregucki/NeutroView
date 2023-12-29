@@ -46,7 +46,7 @@ function Headlines() {
         </div>
       </div>
       <div className="news-story-container-main">
-        {headlines.map((article) => (
+        {headlines.slice(1).map((article) => (
           <GetArticle {...article} key={article.id} />
         ))}
       </div>
@@ -59,9 +59,9 @@ export function GetArticle(article: IArticle) {
   const [textAnalysis, setTextAnalysis] = useState<ITextAnalysis>();
   const wasCalled = useRef(false);
   const mostFrequentWords = textAnalysis?.most_common_words
-    ? Object.keys(textAnalysis?.most_common_words).map(
-        (word) => word.charAt(0).toUpperCase() + word.slice(1)
-      ).join(" · ")
+    ? Object.keys(textAnalysis?.most_common_words)
+        .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+        .join(" · ")
     : [];
   useEffect(() => {
     if (wasCalled.current) return;
@@ -71,18 +71,20 @@ export function GetArticle(article: IArticle) {
   return (
     <div className="story-container-long" key={article.id}>
       <div className="story-container-long-desc">
-        <span className="most-frequent-words">
-          {mostFrequentWords}
-        </span>
-        <a
-          href={article.url}
-          onMouseEnter={() => setIsHovered(true)}
-          onMouseLeave={() => setIsHovered(false)}
-        >
-          <h4>
-            {highlitghtKeywords(article.title || "", article.keywords || [])}
-          </h4>
-        </a>
+        <div className="story-container-long-most-frequent-words">
+          <span className="most-frequent-words">{mostFrequentWords}</span>
+        </div>
+        <div className="story-container-long-title">
+          <a
+            href={article.url}
+            onMouseEnter={() => setIsHovered(true)}
+            onMouseLeave={() => setIsHovered(false)}
+          >
+            <h4>
+              {highlitghtKeywords(article.title || "", article.keywords || [])}
+            </h4>
+          </a>
+        </div>
         <div className="story-container-long-meta">
           <div className="sentiment-bar-main">
             <div className="tooltiptext">

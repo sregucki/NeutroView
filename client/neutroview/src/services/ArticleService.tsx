@@ -4,18 +4,30 @@ import { IArticle, IArticleQuery } from "../types/ApiTypes";
 
 export function getArticlesApiUrl(articleQuery: IArticleQuery): string {
   const keyword = `?keyword=${articleQuery.keyword}`;
-  const country = articleQuery.country ? `&country=${articleQuery.country}` : "";
-  const category = articleQuery.category ? `&category=${articleQuery.category}` : "";
-  const timespan = articleQuery.timespan ? `&timespan=${articleQuery.timespan}` : "";
-  const num_records = articleQuery.num_records ? `&num_records=${articleQuery.num_records}` : "";
+  const country = articleQuery.country
+    ? `&country=${articleQuery.country}`
+    : "";
+  const category = articleQuery.category
+    ? `&category=${articleQuery.category}`
+    : "";
+  const timespan = articleQuery.timespan
+    ? `&timespan=${articleQuery.timespan}`
+    : "";
+  const num_records = articleQuery.num_records
+    ? `&num_records=${articleQuery.num_records}`
+    : "";
   const domain = articleQuery.domain ? `&domain=${articleQuery.domain}` : "";
-  const start_date = articleQuery.start_date ? `&start_date=${articleQuery.start_date}` : "";
-  const end_date = articleQuery.end_date ? `&end_date=${articleQuery.end_date}` : "";
+  const start_date = articleQuery.start_date
+    ? `&start_date=${articleQuery.start_date}`
+    : "";
+  const end_date = articleQuery.end_date
+    ? `&end_date=${articleQuery.end_date}`
+    : "";
   return `${ARTICLE_API_BASE_URL}/articles/${keyword}${country}${category}${timespan}${num_records}${domain}${start_date}${end_date}`;
 }
 
 export function getTopArticleProviders(): string {
-  return "nytimes.com,bbc.co.uk,theguardian.com,foxnews.com";
+  return "nytimes.com,bbc.co.uk,foxnews.com,news.yahoo.com,dailymail.co.uk";
 }
 
 export function mapArticleToJson(data: any, keywords: string[]): IArticle[] {
@@ -39,7 +51,9 @@ export async function fetchArticlesFromApi(
   let response;
   try {
     response = await fetch(getArticlesApiUrl(query));
-    dispatcher(mapArticleToJson(await response?.json(), query.keyword?.split(",") || []));
+    dispatcher(
+      mapArticleToJson(await response?.json(), query.keyword?.split(",") || [])
+    );
   } catch (e) {
     console.error("Failed to fetch articles from api");
   }
