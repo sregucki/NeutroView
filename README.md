@@ -139,5 +139,32 @@ artykułu
 ### 4.1 Strona główna
 ![Home page](doc/Home.png)
 
+Strona główna składa się z trzech sekcji oraz paska nawigacyjnego. Sekcje to:
+
+- **Top news stories** - sekcja wyświetlająca nagłówki najpopularniejszych artykułów prasowych, znajdująca się w lewej 
+dolnej części strony głównej. Powyżej znajduje się specjalna mini-sekcja zawierająca skrót do obecnie "najgorętszego"
+tematu prasowego.
+
+- **Headlines** - sekcja wyświetlająca nagłówki artykułów prasowych zawierających najpopularniejsze słowa kluczowe np. 
+"European Union, United States", znajdująca się w centralnej części strony głównej.
+
+- **Daily Local news** - sekcja umożliwiająca wyświetlenie artykułów prasowych na podstawie lokalizacji użytkownika, 
+znajdująca się w prawej części strony głównej. Sekcja ta zawiera pole wyszukiwania, które jest wypełniane na podstawie 
+lokalizacji adresu IP użytkownika. Zawartość pola wyszukiwania może zostać zmieniona przez użytkownika. Zatwierdzenie
+wyszukiwania odbywa się poprzez kliknięcie przycisku "Submit".
+
+- **Pasek nawigacyjny** - pasek znajdujący się w górnej części strony głównej, który jest widoczny na każdej stronie. 
+Pasek ten zawiera skrót do strony głównej, skróty do wyszukiwania artykułów prasowych na podstawie najpopularniejszych 
+słów kluczowych oraz pole wyszukiwania artykułów prasowych na podstawie słów kluczowych dostarczonych przez użytkownika.
+Prawy koniec pola wyszukiwania zawiera przycisk, który pokazuje użytkownikowi dodatkowe opcje wyszukiwania, takie jak
+wybór zakresu dat publikacji artykułów. 
+
+
 ### 4.2 Wyszukiwanie artykułów prasowych
 ![Search](doc/Search.png)
+
+Strona wyszukiwania artykułów prasowych zawiera rezultaty wyszukiwania w postaci listy nagłówków artykułów prasowych. 
+Każdy nagłówek zawiera informacje takie jak: tytuł, domena źródła, data publikacji, miniaturka artykułu, trzy 
+najpopularniejsze słowa oraz wskaźniki analizy sentymentu w postaci wartości liczbowych dla każdego z trzech typów 
+sentymentu: pozytywnego, neutralnego i negatywnego. Wartości te są wyświetlane po najechaniu kursorem na pasek 
+sentymentu. Kliknięcie tytułu artykułu przenosi użytkownika na stronę, gdzie wyświetlany jest pełny tekst artykułu.
